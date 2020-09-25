@@ -51,10 +51,15 @@ def pack_out(frame):
 
 
 # Outputs objects with parameters grid(row=2, columnspan=2, rowspan=3)
-def grid_out_col_row(obj):
+def grid_out_col_row_3(obj):
     obj.grid(row=2, columnspan=2, rowspan=3)
 
 
 # Outputs objects with parameters grid(row=2, columnspan=2)
 def grid_out_col(obj):
     obj.grid(row=2, columnspan=2)
+
+
+# Outputs objects with parameters grid(row=2, columnspan=2, rowspan=3)
+def grid_out_col_row_5(obj):
+    obj.grid(row=2, columnspan=2, rowspan=5)

@@ -2,34 +2,29 @@
 
 from tkinter import *
 from tkinter import ttk
-from win32api import GetSystemMetrics
+from CablingGen import FramePlaceholderText
+
+_ = FramePlaceholderText.t.gettext
+
+x_indent_40 = 40
+x_indent_20 = 20
 
 
-width_window = GetSystemMetrics(0) / 2.5
-height_window = GetSystemMetrics(1) / 2.025
+def output_sennit(frame):
+    var_sennit_standard = StringVar()
+    sennit_label_standard = Label(frame, textvariable=var_sennit_standard, font='Arial 12')
+    var_sennit_standard.set(_("Standard:"))
 
+    sennit_standard = ttk.Combobox(frame, state="readonly", font='Arial 10', height=5)
 
-class Sennit(Label, ttk.Combobox):
-    def __init__(self, master=None):
-        super().__init__(master)
-        self.master = master
-        self.output_sennit()
+    var_sennit_diameter_in = StringVar()
+    sennit_label_diameter_in = Label(frame, textvariable=var_sennit_diameter_in, font='Arial 12')
+    var_sennit_diameter_in.set(_("Inner diameter (mm):"))
 
-    def output_sennit(self):
-        var_sennit_standard = StringVar()
-        sennit_label_standard = Label(self, textvariable=var_sennit_standard, font='Arial 12')
-        var_sennit_standard.set("Стандарт:")
+    sennit_diameter_in = ttk.Combobox(frame, state="readonly", font='Arial 10', height=5)
 
-        sennit_standard = ttk.Combobox(self, state="readonly", font='Arial 10', height=5)
+    sennit_label_standard.grid(row=0, column=0, padx=x_indent_40, sticky=W)
+    sennit_standard.grid(row=1, column=0, padx=x_indent_40, sticky=W)
 
-        var_sennit_diameter_in = StringVar()
-        sennit_label_diameter_in = Label(self, textvariable=var_sennit_diameter_in, font='Arial 12')
-        var_sennit_diameter_in.set("Внутренний диаметр (мм):")
-
-        sennit_diameter_in = ttk.Combobox(self, state="readonly", font='Arial 10', height=5)
-
-        sennit_label_standard.grid(row=0, column=0, padx=40, sticky=W)
-        sennit_standard.grid(row=1, column=0, padx=40, sticky=W)
-
-        sennit_label_diameter_in.grid(row=0, column=3, sticky=W, padx=20)
-        sennit_diameter_in.grid(row=1, column=3, sticky=W, padx=20)
+    sennit_label_diameter_in.grid(row=0, column=3, sticky=W, padx=x_indent_20)
+    sennit_diameter_in.grid(row=1, column=3, sticky=W, padx=x_indent_20)

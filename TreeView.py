@@ -4,7 +4,7 @@ from tkinter import *
 from tkinter import ttk
 from win32api import GetSystemMetrics
 from CablingGen import AuxiliaryFunctionsForTree, FrameImg, FramePlaceholderText, Sennit, SennitStandard, Tube, \
-    TubeStandard
+    TubeStandard, Cable, Elements
 
 height_window = int(GetSystemMetrics(1) / 2.025)
 width_window = GetSystemMetrics(0) / 2.5
@@ -47,13 +47,19 @@ class TreeView(Frame):
 
         frame_img_conductor = FrameImg.FrameImg(master=master, img_path=path_img_conductor)
 
-        sennit_elements = Sennit.Sennit(master=frame_placeholder_text)
+        sennit_elements = Elements.Elements(master=frame_placeholder_text, element='Sennit')
 
-        sennit_standard = SennitStandard.SennitStandard(master=frame_placeholder_text)
+        sennit_standard = Elements.Elements(master=frame_placeholder_text, element='SennitStandard')
 
-        tube_elements = Tube.Tube(master=frame_placeholder_text)
+        tube_elements = Elements.Elements(master=frame_placeholder_text, element='Tube')
 
-        tube_standard=TubeStandard.TubeStandard(master=frame_placeholder_text)
+        tube_standard = Elements.Elements(master=frame_placeholder_text, element='TubeStandard')
+
+        cable_elements = Elements.Elements(master=frame_placeholder_text, element='Cable')
+
+        wire_elements = Elements.Elements(master=frame_placeholder_text, element='Wire')
+
+        wire_standard = Elements.Elements(master=frame_placeholder_text, element='WireStandard')
 
         def clicks(event):
             # Elements for which you don't need to output frame_placeholder_text
@@ -89,12 +95,12 @@ class TreeView(Frame):
                 sennit_elements.grid_forget()
 
             if item == 'tu 16.k18-093-2007' or item == 'tu4833-002-08558606-95':
-                AuxiliaryFunctionsForTree.grid_out_col_row(sennit_standard)
+                AuxiliaryFunctionsForTree.grid_out_col_row_3(sennit_standard)
             else:
                 sennit_standard.grid_forget()
 
             if item == 'tube':
-                AuxiliaryFunctionsForTree.grid_out_col_row(tube_elements)
+                AuxiliaryFunctionsForTree.grid_out_col_row_3(tube_elements)
             else:
                 tube_elements.grid_forget()
 
@@ -102,5 +108,20 @@ class TreeView(Frame):
                 AuxiliaryFunctionsForTree.grid_out_col(tube_standard)
             else:
                 tube_standard.grid_forget()
+
+            if item == 'cable':
+                AuxiliaryFunctionsForTree.grid_out_col(cable_elements)
+            else:
+                cable_elements.grid_forget()
+
+            if item == 'wire':
+                AuxiliaryFunctionsForTree.grid_out_col_row_5(wire_elements)
+            else:
+                wire_elements.grid_forget()
+
+            if item == 'tu 16-505.945-76' or item == 'gost 6323-79':
+                AuxiliaryFunctionsForTree.grid_out_col_row_3(wire_standard)
+            else:
+                wire_standard.grid_forget()
 
         tree_view.bind("<1>", clicks)

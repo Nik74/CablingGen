@@ -1,14 +1,10 @@
 from tkinter import *
-from win32api import GetSystemMetrics
 
 import gettext
 
 t = gettext.translation('messages', './locale', languages=['ru'])
 t.install()
 _ = t.gettext
-
-width_window = GetSystemMetrics(0) / 2.5
-height_window = GetSystemMetrics(1) / 2.025
 
 
 class FramePlaceholderText(Frame):
