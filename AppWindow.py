@@ -1,8 +1,9 @@
 # AppWindow creates an app window
+
 from tkinter import *
 from tkinter import ttk
 from win32api import GetSystemMetrics
-from CablingGen import TreeView, FramePlaceholderText
+from CablingGen import TreeView
 
 path_logo_ico = 'img/logo.ico'
 
