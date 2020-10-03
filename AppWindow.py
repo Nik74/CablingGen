@@ -3,7 +3,8 @@
 from tkinter import *
 from tkinter import ttk
 from win32api import GetSystemMetrics
-from CablingGen import TreeView
+from CablingGen import TreeView, Logs
+from CablingGen.Auxiliary import AuxiliaryGlobalObject as AGO
 
 path_logo_ico = 'img/logo.ico'
 
@@ -15,16 +16,12 @@ class AppWindow(Tk):
         self.iconbitmap(path_logo_ico)
         self.resizable(width=False, height=False)
 
-        # Setting the size of the app window relative to the user's screen resolution
-        width_window = GetSystemMetrics(0) / 2.5
-        height_window = GetSystemMetrics(1) / 2.025
-
         # Setting the location of the application window relative to the user's screen resolution
-        w_center = (GetSystemMetrics(0) - width_window) / 2
-        h_center = (GetSystemMetrics(1) - height_window) / 2
+        w_center = int((GetSystemMetrics(0) - AGO.width_window) / 2)
+        h_center = int((GetSystemMetrics(1) - AGO.height_window) / 2)
 
         # Creating an application window
-        self.geometry("{}x{}+{}+{}".format(int(width_window), int(height_window), int(w_center), int(h_center)))
+        self.geometry("{}x{}+{}+{}".format(int(AGO.width_window), int(AGO.height_window), int(w_center), int(h_center)))
 
         style = ttk.Style()
         style.theme_use('vista')

@@ -1,47 +1,16 @@
 from tkinter import ttk, BOTH
+from CablingGen import SQLite
 
 
 # Adding a list to the tree from a file
 def add_list_to_tree_from_file(tree: ttk.Treeview) -> str:
     result = ''
 
-    flag = 0
+    for line in SQLite.sel_from_material():
+        if line[0] == 1:
+            result = line[1].lower()
 
-    parent = {}
-    parent_count = {}
-
-    f = open('./Material/Material.csv', 'r')
-
-    if f:
-        for line in f:
-            number = int(line[0: line.find(' '): 1])
-
-            if '\n' in line[line.find(' ') + 1: len(line):]:  # If not the last element
-                string = line[line.find(' ') + 1: len(line) - 1:]
-            else:
-                string = line[line.find(' ') + 1: len(line):]
-
-            if number in parent.keys():
-                parent[number] = string.lower()
-                parent_count[number] = parent_count[number] + 1
-            else:
-                parent.update({number: string.lower()})
-                parent_count.update({number: 0})
-
-            if 0 == number:
-                tree.insert('', parent_count[number], string.lower(),
-                            text=string)
-                result = string.lower()
-            else:
-                if flag > number:
-                    parent_count[flag] = 0
-
-                tree.insert(parent[number - 1], parent_count[number], string.lower(),
-                            text=string)
-
-            flag = number
-
-    f.close()
+        tree.insert(line[2].lower(), line[3], line[1].lower(), text=line[1])
 
     return result
 

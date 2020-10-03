@@ -2,6 +2,10 @@
 # This is an example of the main program and does not include all its functions
 
 
-from CablingGen import AppWindow
+from CablingGen import AppWindow, Logs, SQLite
 
-root = AppWindow.AppWindow()
+Logs.logger.debug("Program is started")
+
+AppWindow.AppWindow()
+
+SQLite.conn.close()

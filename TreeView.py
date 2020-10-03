@@ -3,12 +3,14 @@
 from tkinter import *
 from tkinter import ttk
 from CablingGen import Elements
-from CablingGen.Frames import FrameImg, FramePlaceholderText, FrameResult
+from CablingGen.Frames import FrameImg, FramePlaceholderText
 from CablingGen.Auxiliary import AuxiliaryFunctionsForTree as AFT, AuxiliaryGlobalObject as AGO
 
 path_img_coil = 'img/logo_coil.png'
 path_img_shell = 'img/logo_shell.png'
 path_img_conductor = 'img/logo_conductor.png'
+
+_ = AGO.t.gettext
 
 
 class TreeView(Frame):
@@ -44,27 +46,24 @@ class TreeView(Frame):
 
         frame_img_conductor = FrameImg.FrameImg(master=master, img_path=path_img_conductor)
 
-        frame_result = FrameResult.FrameResult(master=frame_placeholder_text)
-        frame_result.grid(row=10, column=0, columnspan=4)
-
         sennit_elements = Elements.Elements(master=frame_placeholder_text, element='Sennit')
 
-        sennit_tu_16_k18_093_2007 = Elements.Elements(master=frame_placeholder_text, element='TU 16.K18-093-2007')
+        sennit_tu_16_k18_093_2007 = Elements.Elements(master=frame_placeholder_text, element=_('TU16.K18-093-2007'))
 
         sennit_tu4833_002_08558606_95 = Elements.Elements(master=frame_placeholder_text,
-                                                          element='TU4833-002-08558606-95')
+                                                          element=_('TU 4833-002-08558606-95'))
 
         tube_elements = Elements.Elements(master=frame_placeholder_text, element='Tube')
 
-        tube_standard = Elements.Elements(master=frame_placeholder_text, element='TubeStandard')
+        tube_standard = Elements.Elements(master=frame_placeholder_text, element=_('GOST 19034-82'))
 
         cable_elements = Elements.Elements(master=frame_placeholder_text, element='Cable')
 
         wire_elements = Elements.Elements(master=frame_placeholder_text, element='Wire')
 
-        wire_tu_16_505_945_76 = Elements.Elements(master=frame_placeholder_text, element='TU 16-505.945-76')
+        wire_tu_16_505_945_76 = Elements.Elements(master=frame_placeholder_text, element=_('TU 16-505.945-76'))
 
-        wire_gost_6323_79 = Elements.Elements(master=frame_placeholder_text, element='GOST 6323-79')
+        wire_gost_6323_79 = Elements.Elements(master=frame_placeholder_text, element=_('GOST 6323-79'))
 
         def clicks(event):
             # Elements for which you don't need to output frame_placeholder_text
