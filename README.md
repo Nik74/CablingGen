@@ -1,8 +1,8 @@
 # CablingGen
-This is an example of my project. This project will be updated.
+This is an example of my project.
 
-This example uses files instead of a database
+This example uses database SQLite.
 
-The files will be replaced with SQLite
+This program creates .spl files that are based on data selected by the user.
 
-Version 1.3
+Version 1.4
